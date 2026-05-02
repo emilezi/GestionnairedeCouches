@@ -16,7 +16,7 @@ public class Database {
     static String DBhost = "localhost";
     static String DBname = "gestionnairedecouches";
     static String DBuser = "root";
-    static String DBpassword = "htgh7@!25t";
+    static String DBpassword = "password";
     
     public static Connection getDB()
     {
