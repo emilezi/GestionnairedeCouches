@@ -1,6 +1,11 @@
 package View;
 
 import Class.Database;
+import Class.Form;
+import Class.Order;
+
+import javax.swing.table.*;
+import java.util.Vector;
 
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
@@ -18,6 +23,34 @@ public class homeApplication extends javax.swing.JFrame {
      */
     public homeApplication() {
         initComponents();
+        initTable();
+
+    }
+    
+    private void deleteTable(){
+        DefaultTableModel dm = (DefaultTableModel) jTable1.getModel();
+        int rowCount = dm.getRowCount();
+        //Remove rows one by one from the end of the table
+        for (int i = rowCount - 1; i >= 0; i--) {
+            dm.removeRow(i);
+        }
+    }
+    
+    private void initTable(){
+        String[][] data = Order.getOrder();
+        
+        int i = 0;
+        
+        for (String[] tab: data) {
+            DefaultTableModel defaultTableModel = (DefaultTableModel) jTable1.getModel();
+            Vector obj=new Vector();
+            obj.add(data[i][0]);
+            obj.add(data[i][1]);
+            obj.add(data[i][2]);
+            obj.add(data[i][3]);
+            defaultTableModel.addRow(obj);
+            i++;
+        }
     }
 
     /**
@@ -29,21 +62,157 @@ public class homeApplication extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        addButton = new javax.swing.JButton();
+        deleteButton = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        numberTextField = new javax.swing.JTextField();
+        quantityTextField = new javax.swing.JTextField();
+        categoryTextField = new javax.swing.JTextField();
+        priceTextField = new javax.swing.JTextField();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        addButton.setText("Ajouter");
+        addButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addButtonActionPerformed(evt);
+            }
+        });
+
+        deleteButton.setText("Suprimer");
+        deleteButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                deleteButtonActionPerformed(evt);
+            }
+        });
+
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "N°", "Quantité", "Catégorie", "Prix"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane1.setViewportView(jTable1);
+        jTable1.getAccessibleContext().setAccessibleParent(jTable1);
+
+        jLabel1.setText("N° :");
+
+        jLabel2.setText("Quantité :");
+
+        jLabel3.setText("Catégorie :");
+
+        jLabel4.setText("Prix :");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 375, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(addButton)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(deleteButton))
+                            .addComponent(jLabel1)
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel3)
+                            .addComponent(jLabel4)
+                            .addComponent(numberTextField)
+                            .addComponent(quantityTextField)
+                            .addComponent(categoryTextField))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(priceTextField))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(addButton)
+                            .addComponent(deleteButton))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jLabel1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(numberTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(quantityTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel3)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(categoryTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel4)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(priceTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(19, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void addButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addButtonActionPerformed
+        String number = numberTextField.getText();
+        String quantity = quantityTextField.getText();
+        String category = categoryTextField.getText();
+        String price = priceTextField.getText();
+        
+        String Input[] = {"number","quantity","category","price"} ;
+        Input[0] = number;
+        Input[1] = quantity;
+        Input[2] = category;
+        Input[3] = price;
+        
+        if(Form.checkInput(Input)==0){
+            Order.newOrder(Input);
+        }
+        
+        numberTextField.setText("");
+        quantityTextField.setText("");
+        categoryTextField.setText("");
+        priceTextField.setText("");
+        
+        deleteTable();
+        initTable();
+        
+    }//GEN-LAST:event_addButtonActionPerformed
+
+    private void deleteButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteButtonActionPerformed
+        TableModel tm = jTable1.getModel();
+        DefaultTableModel obj=(DefaultTableModel) tm;
+        if(jTable1.getSelectedRow()>=0){
+            Object number = tm.getValueAt(jTable1.getSelectedRow(), 0);
+            Order.deleteOrder(String.valueOf(number));
+            deleteTable();
+            initTable();
+        }
+            
+    }//GEN-LAST:event_deleteButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -84,8 +253,22 @@ public class homeApplication extends javax.swing.JFrame {
                 }
             }
         });
+        
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton addButton;
+    private javax.swing.JTextField categoryTextField;
+    private javax.swing.JButton deleteButton;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable jTable1;
+    private javax.swing.JTextField numberTextField;
+    private javax.swing.JTextField priceTextField;
+    private javax.swing.JTextField quantityTextField;
     // End of variables declaration//GEN-END:variables
+
 }

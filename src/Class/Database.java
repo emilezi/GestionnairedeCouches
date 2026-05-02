@@ -16,7 +16,7 @@ public class Database {
     static String DBhost = "localhost";
     static String DBname = "gestionnairedecouches";
     static String DBuser = "root";
-    static String DBpassword = "password";
+    static String DBpassword = "htgh7@!25t";
     
     public static Connection getDB()
     {
@@ -80,12 +80,19 @@ public class Database {
             
            Connection conn = getDB();
            Statement statement = conn.createStatement();
-           String sql = "CREATE TABLE test " +
-"                   (id INT not NULL, " +
-"                    nom VARCHAR(255), " +
-"                    age INT, " +
-"                    adresse VARCHAR(255)," +
-"                    PRIMARY KEY ( id ))";
+           String sql = "CREATE TABLE `gc_order` (" +
+            "  `id` int(11) NOT NULL," +
+            "  `number` varchar(255) NOT NULL," +
+            "  `quantity` int(11) NOT NULL," +
+            "  `category` varchar(255) NOT NULL," +
+            "  `price` int(11) NOT NULL" +
+            ") ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;";
+           statement.executeUpdate(sql);
+           sql = "ALTER TABLE `gc_order`" +
+                 "  ADD PRIMARY KEY (`id`);";
+           statement.executeUpdate(sql);
+           sql = "ALTER TABLE `gc_order`" +
+                 "  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;";
            statement.executeUpdate(sql);
            
            conn.close();
