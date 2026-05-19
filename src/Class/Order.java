@@ -39,13 +39,13 @@ public class Order {
             int i = 0;
             while(res.next()){
                 
-            String number = res.getString("number");
+            String wording = res.getString("wording");
             int quantity = res.getInt("quantity");
             String  category = res.getString("category");
             int price = res.getInt("price");
                 
                 
-            order[i][0] = number;
+            order[i][0] = wording;
             order[i][1] = Integer.toString(quantity);
             order[i][2] = category;
             order[i][3] = Integer.toString(price);
@@ -67,7 +67,7 @@ public class Order {
             
            Connection conn = getDB();
            Statement statement = conn.createStatement();
-           String sql = "INSERT INTO `gc_order` (`number`, `quantity`, `category`, `price`) VALUES ('"+Input[0]+"','"+Input[1]+"','"+Input[2]+"','"+Input[3]+"');";
+           String sql = "INSERT INTO `gc_order` (`wording`, `quantity`, `category`, `price`) VALUES ('"+Input[0]+"','"+Input[1]+"','"+Input[2]+"','"+Input[3]+"');";
            statement.executeUpdate(sql);
            
            conn.close();

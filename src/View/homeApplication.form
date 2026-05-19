@@ -39,9 +39,9 @@
                           <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
                           <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
                           <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
-                          <Component id="numberTextField" alignment="0" max="32767" attributes="0"/>
+                          <Component id="wordingTextField" alignment="0" max="32767" attributes="0"/>
                           <Component id="quantityTextField" alignment="0" max="32767" attributes="0"/>
-                          <Component id="categoryTextField" alignment="0" max="32767" attributes="0"/>
+                          <Component id="categoryComboBox" alignment="0" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                   </Group>
@@ -64,7 +64,7 @@
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="numberTextField" min="-2" max="-2" attributes="0"/>
+                      <Component id="wordingTextField" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
@@ -72,7 +72,7 @@
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="categoryTextField" min="-2" max="-2" attributes="0"/>
+                      <Component id="categoryComboBox" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
@@ -113,7 +113,7 @@
           <Properties>
             <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
               <Table columnCount="4" rowCount="0">
-                <Column editable="false" title="N&#xb0;" type="java.lang.Object"/>
+                <Column editable="false" title="Libell&#xe9;" type="java.lang.Object"/>
                 <Column editable="false" title="Quantit&#xe9;" type="java.lang.Object"/>
                 <Column editable="false" title="Cat&#xe9;gorie" type="java.lang.Object"/>
                 <Column editable="false" title="Prix" type="java.lang.Object"/>
@@ -130,7 +130,7 @@
     </Container>
     <Component class="javax.swing.JLabel" name="jLabel1">
       <Properties>
-        <Property name="text" type="java.lang.String" value="N&#xb0; :"/>
+        <Property name="text" type="java.lang.String" value="Libell&#xe9; :"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel2">
@@ -148,13 +148,31 @@
         <Property name="text" type="java.lang.String" value="Prix :"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="numberTextField">
+    <Component class="javax.swing.JTextField" name="wordingTextField">
     </Component>
     <Component class="javax.swing.JTextField" name="quantityTextField">
     </Component>
-    <Component class="javax.swing.JTextField" name="categoryTextField">
-    </Component>
     <Component class="javax.swing.JTextField" name="priceTextField">
+    </Component>
+    <Component class="javax.swing.JComboBox" name="categoryComboBox">
+      <Properties>
+        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+          <StringArray count="6">
+            <StringItem index="0" value="3 : 6-10 Kg"/>
+            <StringItem index="1" value="4 : 9-14 Kg"/>
+            <StringItem index="2" value="4+ : 10-15 Kg"/>
+            <StringItem index="3" value="5 : 11-16 Kg"/>
+            <StringItem index="4" value="6 : 13-18 Kg"/>
+            <StringItem index="5" value="7 : +15 Kg"/>
+          </StringArray>
+        </Property>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="categoryComboBoxActionPerformed"/>
+      </Events>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+      </AuxValues>
     </Component>
   </SubComponents>
 </Form>

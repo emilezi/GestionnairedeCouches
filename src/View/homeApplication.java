@@ -70,10 +70,10 @@ public class homeApplication extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        numberTextField = new javax.swing.JTextField();
+        wordingTextField = new javax.swing.JTextField();
         quantityTextField = new javax.swing.JTextField();
-        categoryTextField = new javax.swing.JTextField();
         priceTextField = new javax.swing.JTextField();
+        categoryComboBox = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -96,7 +96,7 @@ public class homeApplication extends javax.swing.JFrame {
 
             },
             new String [] {
-                "N°", "Quantité", "Catégorie", "Prix"
+                "Libellé", "Quantité", "Catégorie", "Prix"
             }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -110,13 +110,20 @@ public class homeApplication extends javax.swing.JFrame {
         jScrollPane1.setViewportView(jTable1);
         jTable1.getAccessibleContext().setAccessibleParent(jTable1);
 
-        jLabel1.setText("N° :");
+        jLabel1.setText("Libellé :");
 
         jLabel2.setText("Quantité :");
 
         jLabel3.setText("Catégorie :");
 
         jLabel4.setText("Prix :");
+
+        categoryComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "3 : 6-10 Kg", "4 : 9-14 Kg", "4+ : 10-15 Kg", "5 : 11-16 Kg", "6 : 13-18 Kg", "7 : +15 Kg" }));
+        categoryComboBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                categoryComboBoxActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -137,9 +144,9 @@ public class homeApplication extends javax.swing.JFrame {
                             .addComponent(jLabel2)
                             .addComponent(jLabel3)
                             .addComponent(jLabel4)
-                            .addComponent(numberTextField)
+                            .addComponent(wordingTextField)
                             .addComponent(quantityTextField)
-                            .addComponent(categoryTextField))
+                            .addComponent(categoryComboBox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addComponent(priceTextField))
                 .addContainerGap())
@@ -156,7 +163,7 @@ public class homeApplication extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jLabel1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(numberTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(wordingTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -164,7 +171,7 @@ public class homeApplication extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel3)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(categoryTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(categoryComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel4)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -177,24 +184,23 @@ public class homeApplication extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void addButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addButtonActionPerformed
-        String number = numberTextField.getText();
+        String wording = wordingTextField.getText();
         String quantity = quantityTextField.getText();
-        String category = categoryTextField.getText();
+        String category = String.valueOf(categoryComboBox.getSelectedItem());
         String price = priceTextField.getText();
         
-        String Input[] = {"number","quantity","category","price"} ;
-        Input[0] = number;
+        String Input[] = {"wording","quantity","category","price"} ;
+        Input[0] = wording;
         Input[1] = quantity;
-        Input[2] = category;
+        Input[2] = category.substring(0, 2);
         Input[3] = price;
         
         if(Form.checkInput(Input)==0){
             Order.newOrder(Input);
         }
         
-        numberTextField.setText("");
+        wordingTextField.setText("");
         quantityTextField.setText("");
-        categoryTextField.setText("");
         priceTextField.setText("");
         
         deleteTable();
@@ -206,13 +212,17 @@ public class homeApplication extends javax.swing.JFrame {
         TableModel tm = jTable1.getModel();
         DefaultTableModel obj=(DefaultTableModel) tm;
         if(jTable1.getSelectedRow()>=0){
-            Object number = tm.getValueAt(jTable1.getSelectedRow(), 0);
-            Order.deleteOrder(String.valueOf(number));
+            Object wording = tm.getValueAt(jTable1.getSelectedRow(), 0);
+            Order.deleteOrder(String.valueOf(wording));
             deleteTable();
             initTable();
         }
             
     }//GEN-LAST:event_deleteButtonActionPerformed
+
+    private void categoryComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_categoryComboBoxActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_categoryComboBoxActionPerformed
 
     /**
      * @param args the command line arguments
@@ -258,7 +268,7 @@ public class homeApplication extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton addButton;
-    private javax.swing.JTextField categoryTextField;
+    private javax.swing.JComboBox<String> categoryComboBox;
     private javax.swing.JButton deleteButton;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -266,9 +276,9 @@ public class homeApplication extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
-    private javax.swing.JTextField numberTextField;
     private javax.swing.JTextField priceTextField;
     private javax.swing.JTextField quantityTextField;
+    private javax.swing.JTextField wordingTextField;
     // End of variables declaration//GEN-END:variables
 
 }

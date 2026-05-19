@@ -16,7 +16,7 @@ public class Database {
     static String DBhost = "localhost";
     static String DBname = "gestionnairedecouches";
     static String DBuser = "root";
-    static String DBpassword = "password";
+    static String DBpassword = "htgh7@!25t";
     
     public static Connection getDB()
     {
@@ -82,7 +82,7 @@ public class Database {
            Statement statement = conn.createStatement();
            String sql = "CREATE TABLE `gc_order` (" +
             "  `id` int(11) NOT NULL," +
-            "  `number` varchar(255) NOT NULL," +
+            "  `wording` varchar(255) NOT NULL," +
             "  `quantity` int(11) NOT NULL," +
             "  `category` varchar(255) NOT NULL," +
             "  `price` int(11) NOT NULL" +
